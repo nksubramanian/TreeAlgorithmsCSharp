@@ -1,4 +1,6 @@
-﻿namespace TreeAlgos
+﻿using System.Collections;
+
+namespace TreeAlgos
 {
     internal class Program
     {
@@ -22,8 +24,6 @@
 
             GetDFSTreeTraversalPaths("a", ref pathsAlreadyTraversed);
 
-            var f = pathsAlreadyTraversed;
-
         }
 
         private static string GetLastNode(string path)
@@ -38,7 +38,7 @@
         }
 
 
-        private static void GetDFSTreeTraversalPaths(string pathTraversed, ref List<string> pathsAlreadyTraversed, bool showRetraceNode = false)
+        private static void GetDFSTreeTraversalPaths(string pathTraversed, ref List<string> pathsAlreadyTraversed)
         {
             Console.WriteLine("Check this "+pathTraversed);
             pathsAlreadyTraversed.Add(pathTraversed);
@@ -47,9 +47,17 @@
             foreach(string childNode in GetChildrenOfNode(lastNode))
             {
                 GetDFSTreeTraversalPaths(pathTraversed + childNode, ref pathsAlreadyTraversed);
-                if (showRetraceNode) Console.WriteLine(pathTraversed);
             }
            
         }
+
+        private static void GetBFSTreeTraversalPaths(string pathTraversed)
+        {
+            Queue myQueue = new Queue();
+            myQueue.Enqueue("one");
+
+
+        }
+
     }
 }
