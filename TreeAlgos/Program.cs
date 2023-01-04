@@ -4,7 +4,14 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            string substr = GetLastNode("subbuc");
+
+            Console.WriteLine(substr);
+        }
+
+        private static string GetLastNode(string nodes)
+        {
+            return nodes[^1..];
         }
     }
 }
