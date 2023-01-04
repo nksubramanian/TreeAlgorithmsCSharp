@@ -18,12 +18,11 @@
                };
         static void Main(string[] args)
         {
+            List<string> pathsAlreadyTraversed = new List<string>();
 
+            GetDFSTreeTraversalPaths("a", ref pathsAlreadyTraversed);
 
-            string substr = GetLastNode("subbuc");
-
-            GetDFSTreeTraversalPaths("a");
-
+            var f = pathsAlreadyTraversed;
 
         }
 
@@ -39,15 +38,16 @@
         }
 
 
-        private static void GetDFSTreeTraversalPaths(string path, bool showRetraceNode = false)
+        private static void GetDFSTreeTraversalPaths(string pathTraversed, ref List<string> pathsAlreadyTraversed, bool showRetraceNode = false)
         {
-            Console.WriteLine(path);
-            string lastNode = GetLastNode(path);
+            Console.WriteLine("Check this "+pathTraversed);
+            pathsAlreadyTraversed.Add(pathTraversed);
+            string lastNode = GetLastNode(pathTraversed);
             if (GetChildrenOfNode(lastNode) == null) return;
             foreach(string childNode in GetChildrenOfNode(lastNode))
             {
-                GetDFSTreeTraversalPaths(path+childNode);
-                if (showRetraceNode) Console.WriteLine(path);
+                GetDFSTreeTraversalPaths(pathTraversed + childNode, ref pathsAlreadyTraversed);
+                if (showRetraceNode) Console.WriteLine(pathTraversed);
             }
            
         }
