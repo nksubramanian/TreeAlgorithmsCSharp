@@ -22,7 +22,7 @@
 
             string substr = GetLastNode("subbuc");
 
-            DFSTreeTraversal("a");
+            GetDFSTreeTraversalPaths("a");
 
 
         }
@@ -39,14 +39,15 @@
         }
 
 
-        private static void DFSTreeTraversal(string path)
+        private static void GetDFSTreeTraversalPaths(string path, bool showRetraceNode = false)
         {
+            Console.WriteLine(path);
             string lastNode = GetLastNode(path);
             if (GetChildrenOfNode(lastNode) == null) return;
             foreach(string childNode in GetChildrenOfNode(lastNode))
             {
-                Console.WriteLine(path + childNode);
-                DFSTreeTraversal(path+childNode);
+                GetDFSTreeTraversalPaths(path+childNode);
+                if (showRetraceNode) Console.WriteLine(path);
             }
            
         }
