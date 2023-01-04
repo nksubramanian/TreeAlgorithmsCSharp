@@ -21,8 +21,15 @@ namespace TreeAlgos
         static void Main(string[] args)
         {
             List<string> pathsAlreadyTraversed = new List<string>();
+            //GetDFSTreeTraversalPaths("a", ref pathsAlreadyTraversed);
+            string lastNode = GetLastNode("ab");
 
-            GetDFSTreeTraversalPaths("a", ref pathsAlreadyTraversed);
+            GetBFSTreeTraversalPaths("a");
+
+
+
+
+
 
         }
 
@@ -53,10 +60,28 @@ namespace TreeAlgos
 
         private static void GetBFSTreeTraversalPaths(string pathTraversed)
         {
-            Queue myQueue = new Queue();
-            myQueue.Enqueue("one");
+            Queue pathsAlreadyTravesed = new Queue();
+            Console.WriteLine(pathTraversed);
+            if (GetChildrenOfNode(GetLastNode(pathTraversed))==null) return;
+            pathsAlreadyTravesed.Enqueue(pathTraversed);
+            while (true)
+            {
+                if (pathsAlreadyTravesed.Count == 0) break;
+                pathTraversed = (string)pathsAlreadyTravesed.Dequeue();
+                string lastNode = GetLastNode(pathTraversed);
+                List<string>? children =  GetChildrenOfNode(lastNode);
+                if((children!=null) && children.Count>0)
+                {
+                    foreach(string child in children)
+                    {
+                        Console.WriteLine(pathTraversed + child);
+                        pathsAlreadyTravesed.Enqueue(pathTraversed + child);
+                    }
+                }
+ 
 
-
+            }
+                
         }
 
     }
